@@ -13,37 +13,52 @@ public class GameSpeedController : MonoBehaviour
     public float slowFactor = 0.3f;
 
     private float currentTimeScale = 1f;
-    
-    void Start(){
+
+    public Text turnButtonText;
+    private bool rightTurn = true;
+    public int turnFactor = 1;
+
+    void Start()
+    {
+        
         pauseButtonText.text = "Play";
         slowButtonText.text = "slow";
+        turnButtonText.text = "Right Off Spin";
     }
 
     /*
     Play/Pause the simulation
     */
-    public void onPauseButtonClick(){
+    public void onPauseButtonClick()
+    {
         paused = !paused;
 
-        if(paused){
+        if (paused)
+        {
             Time.timeScale = 0;
             pauseButtonText.text = "Play";
-        } else {
+        }
+        else
+        {
             Time.timeScale = currentTimeScale;
             pauseButtonText.text = "Pause";
-        }   
+        }
     }
 
     /*
     Controls the speed of the simulation
     */
-    public void onSlowButtonClick(){
+    public void onSlowButtonClick()
+    {
         slowed = !slowed;
 
-        if(slowed){
+        if (slowed)
+        {
             currentTimeScale = slowFactor;
             slowButtonText.text = "normal";
-        } else {
+        }
+        else
+        {
             currentTimeScale = 1f;
             slowButtonText.text = "slow";
         }
@@ -52,7 +67,25 @@ public class GameSpeedController : MonoBehaviour
     /*
     * Resests the scene
     */
-    public void resetScene(){
+    public void resetScene()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }   
+    }
+
+    public void onTurnButtonClick()
+    {
+        rightTurn = !rightTurn;
+
+        Debug.Log("Hello");
+        if (rightTurn)
+        {
+            turnFactor = 1;
+            turnButtonText.text = "Right Off Spin";
+        }
+        else
+        {
+            turnFactor = -1;
+            turnButtonText.text = "Left Off Spin";
+        }
+    }
 }
