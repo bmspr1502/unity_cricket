@@ -46,6 +46,7 @@ public class GameSpeedController : MonoBehaviour
         {
             oldBallObj = ballObj;
             ballObj = Instantiate(ballObj, ballStartPos, Quaternion.Euler(ballStartRot));
+            ballObj.GetComponent<Rigidbody>().isKinematic = false;
             Destroy(oldBallObj);
             pauseButtonText.text = "play";
         }
