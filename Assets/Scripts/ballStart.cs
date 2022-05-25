@@ -39,6 +39,6 @@ public class ballStart : MonoBehaviour
 
     void FixedUpdate()
     {
-        r.AddForce(new Vector3(0,0,1f));
+        r.AddForce(new Vector3(0,0,0.7f));
     }
 }
