@@ -23,6 +23,11 @@ public class GameSpeedController : MonoBehaviour
     // private bool turn = true;
     public int turnFactor = 0;
 
+    public GameObject ballObj;
+    private GameObject oldBallObj;
+    private Vector3 ballStartPos = new Vector3(-0.04f, 1.88f, -5.49f);
+    private Vector3 ballStartRot = new Vector3(0f, 0f, 0f);
+
     void Start()
     {
         pauseButtonText.text = "play";
@@ -39,8 +44,10 @@ public class GameSpeedController : MonoBehaviour
 
         if (paused)
         {
-            // reset everything
-            resetScene();
+            oldBallObj = ballObj;
+            ballObj = Instantiate(ballObj, ballStartPos, Quaternion.Euler(ballStartRot));
+            Destroy(oldBallObj);
+            pauseButtonText.text = "play";
         }
         else
         {
@@ -60,11 +67,13 @@ public class GameSpeedController : MonoBehaviour
         {
             currentTimeScale = slowFactor;
             slowButtonText.text = "normal";
+            resetScene();
         }
         else
         {
             currentTimeScale = 1f;
             slowButtonText.text = "slow";
+            resetScene();
         }
     }
 
@@ -76,15 +85,18 @@ public class GameSpeedController : MonoBehaviour
         if(turn == 0){
             turnFactor = 0;
             turnButtonText.text = "no spin";
+            resetScene();
         } else if(turn == 1){
             turnFactor = 1;
             turnButtonText.text = "Right Off Spin";
+            resetScene();
         } else {
             turnFactor = -1;
             turnButtonText.text = "Left Off Spin";
+            resetScene();
         }
 
-        Debug.Log(turnFactor);
+        Debug.Log("GSC turn factor : " + turnFactor);
     }
 
     /*
@@ -92,7 +104,8 @@ public class GameSpeedController : MonoBehaviour
     */
     public void resetScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        paused = false;
+        onPauseButtonClick();
     }
 
 }

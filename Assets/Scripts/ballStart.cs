@@ -38,6 +38,7 @@ public class ballStart : MonoBehaviour
         // throwing the ball for the first time
         r.AddForce(throwDirection);
 
+        Debug.Log("Ball thinks spin is : " + GSC.turnFactor);
         // r.AddTorque(1000 * spinTorque * GSC.turnFactor, 0, 0);
     }
 
