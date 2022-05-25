@@ -15,15 +15,17 @@ public class GameSpeedController : MonoBehaviour
     private float currentTimeScale = 1f;
 
     public Text turnButtonText;
-    private bool rightTurn = true;
-    public int turnFactor = 1;
+    private int turn = 0;
+
+    // private bool rightTurn = true;
+    // private bool turn = true;
+    public int turnFactor = 0;
 
     void Start()
     {
-        
-        pauseButtonText.text = "Play";
+        pauseButtonText.text = "play";
         slowButtonText.text = "slow";
-        turnButtonText.text = "Right Off Spin";
+        turnButtonText.text = "no spin";
     }
 
     /*
@@ -74,16 +76,18 @@ public class GameSpeedController : MonoBehaviour
 
     public void onTurnButtonClick()
     {
-        rightTurn = !rightTurn;
+        turn += 1;
+        turn = turn % 3;
 
-        Debug.Log("Hello");
-        if (rightTurn)
-        {
+        Debug.Log(turn);
+
+        if(turn == 0){
+            turnFactor = 0;
+            turnButtonText.text = "no spin";
+        } else if(turn == 1){
             turnFactor = 1;
             turnButtonText.text = "Right Off Spin";
-        }
-        else
-        {
+        } else {
             turnFactor = -1;
             turnButtonText.text = "Left Off Spin";
         }
