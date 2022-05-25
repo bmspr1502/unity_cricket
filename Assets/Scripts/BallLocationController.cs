@@ -19,7 +19,7 @@ public class BallLocationController : MonoBehaviour
         movX = moveVector.x;
         movY = moveVector.y;
     }
-    private float movementSpeed = 0.05f;
+    private float movementSpeed = 0.01f;
 
     void Update()
     {
