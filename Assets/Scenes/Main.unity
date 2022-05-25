@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17358015, g: 0.21700229, b: 0.2991079, a: 1}
+  m_IndirectSpecularColor: {r: 0.17358057, g: 0.2170029, b: 0.29910937, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -487,7 +487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb430890ee3e39d098e69211990f7905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwForce: 549.91
+  throwForce: 100
   spinTorque: 300
   airSpeed: 50
 --- !u!54 &618886377
@@ -498,7 +498,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 618886375}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.163
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -842,6 +842,7 @@ MonoBehaviour:
   slowButtonText: {fileID: 1172613447}
   slowFactor: 0.4
   turnButtonText: {fileID: 1445556178}
+  turnFactor: 1
 --- !u!1 &969528496
 GameObject:
   m_ObjectHideFlags: 0
