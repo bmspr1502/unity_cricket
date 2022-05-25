@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
 public class GameSpeedController : MonoBehaviour
 {
+    /* Game pause, play */
     private bool paused = true;
     public Text pauseButtonText;
 
@@ -29,7 +31,7 @@ public class GameSpeedController : MonoBehaviour
     }
 
     /*
-    Play/Pause the simulation
+        Play/Reset the simulation the simulation
     */
     public void onPauseButtonClick()
     {
@@ -37,13 +39,13 @@ public class GameSpeedController : MonoBehaviour
 
         if (paused)
         {
-            Time.timeScale = 0;
-            pauseButtonText.text = "Play";
+            // reset everything
+            resetScene();
         }
         else
         {
             Time.timeScale = currentTimeScale;
-            pauseButtonText.text = "Pause";
+            pauseButtonText.text = "reset";
         }
     }
 
@@ -66,20 +68,10 @@ public class GameSpeedController : MonoBehaviour
         }
     }
 
-    /*
-    * Resests the scene
-    */
-    public void resetScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
     public void onTurnButtonClick()
     {
         turn += 1;
         turn = turn % 3;
-
-        Debug.Log(turn);
 
         if(turn == 0){
             turnFactor = 0;
@@ -91,5 +83,16 @@ public class GameSpeedController : MonoBehaviour
             turnFactor = -1;
             turnButtonText.text = "Left Off Spin";
         }
+
+        Debug.Log(turnFactor);
     }
+
+    /*
+    * Resests the scene
+    */
+    public void resetScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 }

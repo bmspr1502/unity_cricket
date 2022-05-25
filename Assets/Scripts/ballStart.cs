@@ -33,7 +33,6 @@ public class ballStart : MonoBehaviour
 
         // get reference to the ball's rigid body
         r = GetComponent<Rigidbody>();
-
         r.maxAngularVelocity = 100000; // set maximum spin rate for ball
 
         // throwing the ball for the first time
@@ -54,5 +53,7 @@ public class ballStart : MonoBehaviour
         // Debug.Log("Drag : " + dragVector * 0.01f);
         
         r.AddForce(dragVector * 0.01f);
+
+        /* Handle swing mechanics of the ball */
     }
 }
