@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 107130216}
   - component: {fileID: 107130215}
   - component: {fileID: 107130214}
+  - component: {fileID: 107130217}
   m_Layer: 5
   m_Name: TurnButton
   m_TagString: Untagged
@@ -159,8 +160,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -267, y: -51}
-  m_SizeDelta: {x: 59.799988, y: 30}
+  m_AnchoredPosition: {x: -75, y: -176}
+  m_SizeDelta: {x: 120, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &107130214
 MonoBehaviour:
@@ -206,8 +207,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 890212104}
-        m_TargetAssemblyTypeName: GameSpeedController, Assembly-CSharp
+      - m_Target: {fileID: 890212105}
+        m_TargetAssemblyTypeName: DeliveryTypeController, Assembly-CSharp
         m_MethodName: onTurnButtonClick
         m_Mode: 1
         m_Arguments:
@@ -256,6 +257,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107130212}
   m_CullTransparentMesh: 1
+--- !u!114 &107130217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107130212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1354750ad1264345b5e298b22d071fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnButtonText: {fileID: 1445556178}
+  turnFactor: 1
 --- !u!1 &541965371
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,11 +663,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709472096}
   m_LocalRotation: {x: 0.6401861, y: -0.060828052, z: -0.0045706034, w: 0.7657943}
-  m_LocalPosition: {x: 5.24, y: 6.74, z: 1.65}
+  m_LocalPosition: {x: 5.38, y: 8.16, z: 1.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 78.506, y: -29.795, z: -25.213}
 --- !u!1 &833618158
 GameObject:
@@ -757,7 +772,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &890212099
 GameObject:
@@ -772,6 +787,7 @@ GameObject:
   - component: {fileID: 890212100}
   - component: {fileID: 890212103}
   - component: {fileID: 890212104}
+  - component: {fileID: 890212105}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -892,7 +908,19 @@ MonoBehaviour:
   pauseButtonText: {fileID: 1344082237}
   slowButtonText: {fileID: 1172613447}
   slowFactor: 0.4
-  turnButtonText: {fileID: 1445556178}
+--- !u!114 &890212105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890212099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1354750ad1264345b5e298b22d071fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnButtonText: {fileID: 0}
   turnFactor: 1
 --- !u!1 &969528496
 GameObject:
@@ -1329,7 +1357,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b9e10d8b537ed6784923e01f289c5f16, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b9e10d8b537ed6784923e01f289c5f16, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1520,7 +1548,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1923059050
 GameObject:
@@ -1603,7 +1631,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 14.943, y: -90, z: 0}
 --- !u!1 &1981456345
 GameObject:
@@ -1709,7 +1737,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d2bf8ca8defa2c8be927496e15c84ba5, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d2bf8ca8defa2c8be927496e15c84ba5, type: 3}
       propertyPath: m_LocalScale.x

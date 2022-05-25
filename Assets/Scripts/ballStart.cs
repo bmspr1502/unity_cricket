@@ -25,7 +25,7 @@ public class ballStart : MonoBehaviour
         r.maxAngularVelocity = 100000;
 
         // throwing the ball for the first time
-        r.AddForce(new Vector3(-1, 0.1f, 0.1f) * throwForce);
+        r.AddForce(new Vector3(-1, 0f, -0.1f) * throwForce);
         // r.AddForce(Vector3.forward * airSpeed);
 
         r.AddTorque(1000 * spinTorque, 0, 0);
@@ -39,6 +39,6 @@ public class ballStart : MonoBehaviour
 
     void FixedUpdate()
     {
-        r.AddForce(new Vector3(0,0,-1f));
+        r.AddForce(new Vector3(0,0,1f));
     }
 }

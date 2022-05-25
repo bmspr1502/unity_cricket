@@ -14,16 +14,12 @@ public class GameSpeedController : MonoBehaviour
 
     private float currentTimeScale = 1f;
 
-    public Text turnButtonText;
-    private bool rightTurn = true;
-    public int turnFactor = 1;
-
+ 
     void Start()
     {
         
         pauseButtonText.text = "Play";
         slowButtonText.text = "slow";
-        turnButtonText.text = "Right Off Spin";
     }
 
     /*
@@ -70,22 +66,5 @@ public class GameSpeedController : MonoBehaviour
     public void resetScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    public void onTurnButtonClick()
-    {
-        rightTurn = !rightTurn;
-
-        Debug.Log("Hello");
-        if (rightTurn)
-        {
-            turnFactor = 1;
-            turnButtonText.text = "Right Off Spin";
-        }
-        else
-        {
-            turnFactor = -1;
-            turnButtonText.text = "Left Off Spin";
-        }
     }
 }
