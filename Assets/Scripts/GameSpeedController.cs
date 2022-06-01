@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
 public class GameSpeedController : MonoBehaviour
 {
+    /* Game pause, play */
     private bool paused = true;
     public Text pauseButtonText;
 
@@ -15,19 +17,26 @@ public class GameSpeedController : MonoBehaviour
     private float currentTimeScale = 1f;
 
     public Text turnButtonText;
-    private bool rightTurn = true;
-    public int turnFactor = 1;
+    private int turn = 0;
+
+    // private bool rightTurn = true;
+    // private bool turn = true;
+    public int turnFactor = 0;
+
+    public GameObject ballObj;
+    private GameObject oldBallObj;
+    private Vector3 ballStartPos = new Vector3(-0.04f, 1.88f, -5.49f);
+    private Vector3 ballStartRot = new Vector3(0f, 0f, 0f);
 
     void Start()
     {
-        
-        pauseButtonText.text = "Play";
+        pauseButtonText.text = "play";
         slowButtonText.text = "slow";
-        turnButtonText.text = "Right Off Spin";
+        turnButtonText.text = "no spin";
     }
 
     /*
-    Play/Pause the simulation
+        Play/Reset the simulation the simulation
     */
     public void onPauseButtonClick()
     {
@@ -35,13 +44,16 @@ public class GameSpeedController : MonoBehaviour
 
         if (paused)
         {
-            Time.timeScale = 0;
-            pauseButtonText.text = "Play";
+            oldBallObj = ballObj;
+            ballObj = Instantiate(ballObj, ballStartPos, Quaternion.Euler(ballStartRot));
+            ballObj.GetComponent<Rigidbody>().isKinematic = false;
+            Destroy(oldBallObj);
+            pauseButtonText.text = "play";
         }
         else
         {
             Time.timeScale = currentTimeScale;
-            pauseButtonText.text = "Pause";
+            pauseButtonText.text = "reset";
         }
     }
 
@@ -56,12 +68,36 @@ public class GameSpeedController : MonoBehaviour
         {
             currentTimeScale = slowFactor;
             slowButtonText.text = "normal";
+            resetScene();
         }
         else
         {
             currentTimeScale = 1f;
             slowButtonText.text = "slow";
+            resetScene();
         }
+    }
+
+    public void onTurnButtonClick()
+    {
+        turn += 1;
+        turn = turn % 3;
+
+        if(turn == 0){
+            turnFactor = 0;
+            turnButtonText.text = "no spin";
+            resetScene();
+        } else if(turn == 1){
+            turnFactor = 1;
+            turnButtonText.text = "Right Off Spin";
+            resetScene();
+        } else {
+            turnFactor = -1;
+            turnButtonText.text = "Left Off Spin";
+            resetScene();
+        }
+
+        Debug.Log("GSC turn factor : " + turnFactor);
     }
 
     /*
@@ -69,23 +105,8 @@ public class GameSpeedController : MonoBehaviour
     */
     public void resetScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        paused = false;
+        onPauseButtonClick();
     }
 
-    public void onTurnButtonClick()
-    {
-        rightTurn = !rightTurn;
-
-        Debug.Log("Hello");
-        if (rightTurn)
-        {
-            turnFactor = 1;
-            turnButtonText.text = "Right Off Spin";
-        }
-        else
-        {
-            turnFactor = -1;
-            turnButtonText.text = "Left Off Spin";
-        }
-    }
 }
