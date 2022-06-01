@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 using UnityEngine.SceneManagement;
 
 public class GameSpeedController : MonoBehaviour
@@ -41,6 +42,23 @@ public class GameSpeedController : MonoBehaviour
         pauseButtonText.text = "play";
         slowButtonText.text = "slow";
         turnButtonText.text = "no spin";
+    }
+
+    /* FPS Counter */
+    private int avgFPS;
+    public Text FPSDisplay;
+    private int[] FPSArray = new int[100];
+    private int counter = 0; 
+    // private int counter;
+    public void Update(){
+        int current = (int)(1f / Time.unscaledDeltaTime);
+        FPSArray[counter++] = current;
+        
+        if(current >= 100){
+            FPSDisplay.text = ((int)FPSArray.Average()).ToString() + " FPS";
+        }
+
+        counter %= 100;
     }
 
     /*
