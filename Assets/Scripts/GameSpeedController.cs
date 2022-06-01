@@ -18,6 +18,7 @@ public class GameSpeedController : MonoBehaviour
 
     public Text turnButtonText;
     private int turn = 0;
+    public float turnValue = 0f;
 
     // private bool rightTurn = true;
     // private bool turn = true;
@@ -98,6 +99,12 @@ public class GameSpeedController : MonoBehaviour
         }
 
         Debug.Log("GSC turn factor : " + turnFactor);
+    }
+
+    public void onSpinSliderChange(float value){
+        turnValue = value;
+        Debug.Log(turnValue);
+        
     }
 
     /*

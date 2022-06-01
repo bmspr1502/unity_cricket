@@ -13,7 +13,7 @@ public class ballStart : MonoBehaviour
     */
     public Vector3 throwDirection = new Vector3(0, 0, 0);
 
-    // public float spinTorque = 5000;
+    public float spinTorque = 5000;
     
     /*
     * Wind direction and speed
@@ -38,8 +38,9 @@ public class ballStart : MonoBehaviour
         // throwing the ball for the first time
         r.AddForce(throwDirection);
 
-        Debug.Log("Ball thinks spin is : " + GSC.turnFactor);
-        // r.AddTorque(1000 * spinTorque * GSC.turnFactor, 0, 0);
+        
+        Debug.Log("Ball thinks spin is : " + GSC.turnValue);
+        r.AddTorque(1000 * spinTorque * -GSC.turnValue, 0, 0);
     }
 
     void FixedUpdate()
