@@ -26,11 +26,15 @@ public class GameSpeedController : MonoBehaviour
 
     public GameObject ballObj;
     private GameObject oldBallObj;
-    private Vector3 ballStartPos = new Vector3(-0.04f, 1.88f, -5.49f);
+    private Vector3 ballStartPos = new Vector3(-0.04f, 1.68f, -5.49f);
     public Vector3 ballStartRot = new Vector3(0f, 0f, 0f);
     public float releaseSpeed = 80f;
     public float releaseAngle = 0f;
     public float airSpeed = 0f;
+    public float seamAngle = 0f;
+    public Vector2 roughness = new Vector2(0, 0);
+
+    private const float ballDia = 0.43f;
 
     void Start()
     {
@@ -82,28 +86,6 @@ public class GameSpeedController : MonoBehaviour
         }
     }
 
-    // public void onTurnButtonClick()
-    // {
-    //     turn += 1;
-    //     turn = turn % 3;
-
-    //     if(turn == 0){
-    //         turnFactor = 0;
-    //         turnButtonText.text = "no spin";
-    //         resetScene();
-    //     } else if(turn == 1){
-    //         turnFactor = 1;
-    //         turnButtonText.text = "Right Off Spin";
-    //         resetScene();
-    //     } else {
-    //         turnFactor = -1;
-    //         turnButtonText.text = "Left Off Spin";
-    //         resetScene();
-    //     }
-
-    //     Debug.Log("GSC turn factor : " + turnFactor);
-    // }
-
     public void onSpinSliderChange(float value){
         turnValue = value;
         resetScene();
@@ -120,7 +102,8 @@ public class GameSpeedController : MonoBehaviour
     }
 
     public void onSeamAngleSliderChange(float value){
-        ballStartRot.z = value;
+        ballStartRot.y = value;
+        seamAngle = value;
         resetScene();
     }
 
@@ -128,6 +111,13 @@ public class GameSpeedController : MonoBehaviour
         airSpeed = value;
         resetScene();
     }
+
+    public void onRoughnessSliderChange(float value){
+        roughness.x = -value;
+        roughness.y = value;
+        resetScene();
+    }
+
     /*
     * Resests the scene
     */

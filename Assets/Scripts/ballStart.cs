@@ -37,14 +37,14 @@ public class ballStart : MonoBehaviour
         r.maxAngularVelocity = 100000; // set maximum spin rate for ball
 
         // throwing the ball for the first time
-        Debug.Log("Ball thinks release speed is: " + GSC.releaseSpeed + "km/h");
-        Debug.Log("Ball thinks release angle is: " + GSC.releaseAngle +" deg");
-        r.AddForce(throwDirection + new Vector3(0, GSC.releaseAngle, GSC.releaseSpeed));
+        // Debug.Log("Ball thinks release speed is: " + GSC.releaseSpeed + "km/h");
+        // Debug.Log("Ball thinks release angle is: " + GSC.releaseAngle +" deg");
+        r.AddForce(throwDirection + new Vector3(0, GSC.releaseAngle, GSC.releaseSpeed * 1.1f));
         
-        Debug.Log("Ball thinks spin is : " + (spinTorque *  GSC.turnValue));
+        // Debug.Log("Ball thinks spin is : " + (spinTorque *  GSC.turnValue));
         r.AddTorque(0 ,0, spinTorque * -GSC.turnValue);
 
-        Debug.Log("Ball thins air speed is : " + GSC.airSpeed + "km/h" );
+        // Debug.Log("Ball thinks air speed is : " + GSC.airSpeed + "km/h" );
         windDirection = new Vector3(GSC.airSpeed / 5, 0, 0);
         
     }
@@ -63,5 +63,22 @@ public class ballStart : MonoBehaviour
         r.AddForce(dragVector * 0.01f);
 
         /* Handle swing mechanics of the ball */
+        
+        // get wind speed along z-axis
+        float forwardWindSpeed = GSC.airSpeed;
+        Debug.Log("wind : " + forwardWindSpeed);
+        
+
+        // get ball speed along z-axis
+        float forwardSpeed = r.velocity.z;
+        Debug.Log("Ball is moving forward at " + forwardSpeed);
+
+        // get seam angle
+        float seamAngle = GSC.seamAngle;
+        Debug.Log("Seam angle : " + GSC.seamAngle);
+
+        // get roughness
+        Vector2 roughness = GSC.roughness;
+        Debug.Log("ball roughness : " + roughness);
     }
 }

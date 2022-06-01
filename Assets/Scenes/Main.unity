@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17358015, g: 0.21700229, b: 0.2991079, a: 1}
+  m_IndirectSpecularColor: {r: 0.17358057, g: 0.2170029, b: 0.29910937, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1168,7 +1168,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throwDirection: {x: 0.1, y: -20, z: 0}
   windDirection: {x: 3, y: 0, z: -2}
-  turnValue: 0
   GSC: {fileID: 890212104}
 --- !u!54 &618886377
 Rigidbody:
@@ -1644,6 +1643,8 @@ MonoBehaviour:
   releaseSpeed: 80
   releaseAngle: 0
   airSpeed: 0
+  seamAngle: 0
+  roughness: {x: 0, y: -0}
 --- !u!1 &909196128
 GameObject:
   m_ObjectHideFlags: 0
@@ -3008,9 +3009,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'play
-
-'
+  m_Text: play
 --- !u!222 &1344082238
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4573,8 +4572,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1981456345}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.02, y: 0.95, z: 4.26}
-  m_LocalScale: {x: 0.1, y: 1.5, z: 3.65}
+  m_LocalPosition: {x: 0.02, y: 1.3, z: 5}
+  m_LocalScale: {x: 0.1, y: 2.5, z: 3.65}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
