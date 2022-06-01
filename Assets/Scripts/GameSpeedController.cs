@@ -113,8 +113,16 @@ public class GameSpeedController : MonoBehaviour
     }
 
     public void onRoughnessSliderChange(float value){
-        roughness.x = -value;
-        roughness.y = value;
+        if(value < 0){
+            roughness.x = -value;
+            roughness.y = 0;
+        } else if(value > 0){
+            roughness.x = 0;
+            roughness.y = value;
+        } else {
+            roughness.x = 0;
+            roughness.y = 0;
+        }
         resetScene();
     }
 
