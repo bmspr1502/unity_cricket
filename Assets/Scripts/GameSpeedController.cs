@@ -17,7 +17,7 @@ public class GameSpeedController : MonoBehaviour
     private float currentTimeScale = 1f;
 
     public Text turnButtonText;
-    private int turn = 0;
+    // private int turn = 0;
     public float turnValue = 0f;
 
     // private bool rightTurn = true;
@@ -27,7 +27,10 @@ public class GameSpeedController : MonoBehaviour
     public GameObject ballObj;
     private GameObject oldBallObj;
     private Vector3 ballStartPos = new Vector3(-0.04f, 1.88f, -5.49f);
-    private Vector3 ballStartRot = new Vector3(0f, 0f, 0f);
+    public Vector3 ballStartRot = new Vector3(0f, 0f, 0f);
+    public float releaseSpeed = 80f;
+    public float releaseAngle = 0f;
+    public float airSpeed = 0f;
 
     void Start()
     {
@@ -79,34 +82,52 @@ public class GameSpeedController : MonoBehaviour
         }
     }
 
-    public void onTurnButtonClick()
-    {
-        turn += 1;
-        turn = turn % 3;
+    // public void onTurnButtonClick()
+    // {
+    //     turn += 1;
+    //     turn = turn % 3;
 
-        if(turn == 0){
-            turnFactor = 0;
-            turnButtonText.text = "no spin";
-            resetScene();
-        } else if(turn == 1){
-            turnFactor = 1;
-            turnButtonText.text = "Right Off Spin";
-            resetScene();
-        } else {
-            turnFactor = -1;
-            turnButtonText.text = "Left Off Spin";
-            resetScene();
-        }
+    //     if(turn == 0){
+    //         turnFactor = 0;
+    //         turnButtonText.text = "no spin";
+    //         resetScene();
+    //     } else if(turn == 1){
+    //         turnFactor = 1;
+    //         turnButtonText.text = "Right Off Spin";
+    //         resetScene();
+    //     } else {
+    //         turnFactor = -1;
+    //         turnButtonText.text = "Left Off Spin";
+    //         resetScene();
+    //     }
 
-        Debug.Log("GSC turn factor : " + turnFactor);
-    }
+    //     Debug.Log("GSC turn factor : " + turnFactor);
+    // }
 
     public void onSpinSliderChange(float value){
         turnValue = value;
-        Debug.Log(turnValue);
-        
+        resetScene();
     }
 
+    public void onReleaseSpeedSliderChange(float value){
+        releaseSpeed = value;
+        resetScene();
+    }
+
+    public void onReleaseAngleSliderChange(float value){
+        releaseAngle = value;
+        resetScene();
+    }
+
+    public void onSeamAngleSliderChange(float value){
+        ballStartRot.z = value;
+        resetScene();
+    }
+
+    public void onAirSpeedSliderChange(float value){
+        airSpeed = value;
+        resetScene();
+    }
     /*
     * Resests the scene
     */

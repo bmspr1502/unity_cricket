@@ -25,7 +25,7 @@ public class BallLocationController : MonoBehaviour
     {
         //get the Input from Horizontal axis
         //update the position
-        rb.transform.position = transform.position + new Vector3(0,movY * movementSpeed , movX * movementSpeed);
+        rb.transform.position = transform.position + new Vector3(movX * movementSpeed,movY * movementSpeed , 0);
 
         //output to log the position change
     }

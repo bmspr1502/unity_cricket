@@ -13,12 +13,13 @@ public class ballStart : MonoBehaviour
     */
     public Vector3 throwDirection = new Vector3(0, 0, 0);
 
-    public float spinTorque = 5000;
+    public const float spinTorque = 1f;
     
     /*
     * Wind direction and speed
     */
     public Vector3 windDirection = new Vector3(0, 0, 0);
+
     
     // public float airSpeedDivider = 1f;
     // protected GameSpeedController speedController;
@@ -36,11 +37,16 @@ public class ballStart : MonoBehaviour
         r.maxAngularVelocity = 100000; // set maximum spin rate for ball
 
         // throwing the ball for the first time
-        r.AddForce(throwDirection);
-
+        Debug.Log("Ball thinks release speed is: " + GSC.releaseSpeed + "km/h");
+        Debug.Log("Ball thinks release angle is: " + GSC.releaseAngle +" deg");
+        r.AddForce(throwDirection + new Vector3(0, GSC.releaseAngle, GSC.releaseSpeed));
         
-        Debug.Log("Ball thinks spin is : " + GSC.turnValue);
-        r.AddTorque(1000 * spinTorque * -GSC.turnValue, 0, 0);
+        Debug.Log("Ball thinks spin is : " + (spinTorque *  GSC.turnValue));
+        r.AddTorque(0 ,0, spinTorque * -GSC.turnValue);
+
+        Debug.Log("Ball thins air speed is : " + GSC.airSpeed + "km/h" );
+        windDirection = new Vector3(GSC.airSpeed / 5, 0, 0);
+        
     }
 
     void FixedUpdate()
