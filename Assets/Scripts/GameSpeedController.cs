@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 using UnityEngine.SceneManagement;
 
 public class GameSpeedController : MonoBehaviour
@@ -26,17 +27,38 @@ public class GameSpeedController : MonoBehaviour
 
     public GameObject ballObj;
     private GameObject oldBallObj;
-    private Vector3 ballStartPos = new Vector3(-0.04f, 1.88f, -5.49f);
+    private Vector3 ballStartPos = new Vector3(-0.04f, 1.68f, -5.49f);
     public Vector3 ballStartRot = new Vector3(0f, 0f, 0f);
     public float releaseSpeed = 80f;
     public float releaseAngle = 0f;
     public float airSpeed = 0f;
+    public float seamAngle = 0f;
+    public Vector2 roughness = new Vector2(0, 0);
+
+    private const float ballDia = 0.43f;
 
     void Start()
     {
         pauseButtonText.text = "play";
         slowButtonText.text = "slow";
         turnButtonText.text = "no spin";
+    }
+
+    /* FPS Counter */
+    private int avgFPS;
+    public Text FPSDisplay;
+    private int[] FPSArray = new int[100];
+    private int counter = 0; 
+    // private int counter;
+    public void Update(){
+        int current = (int)(1f / Time.unscaledDeltaTime);
+        FPSArray[counter++] = current;
+        
+        if(current >= 100){
+            FPSDisplay.text = ((int)FPSArray.Average()).ToString() + " FPS";
+        }
+
+        counter %= 100;
     }
 
     /*
@@ -82,28 +104,6 @@ public class GameSpeedController : MonoBehaviour
         }
     }
 
-    // public void onTurnButtonClick()
-    // {
-    //     turn += 1;
-    //     turn = turn % 3;
-
-    //     if(turn == 0){
-    //         turnFactor = 0;
-    //         turnButtonText.text = "no spin";
-    //         resetScene();
-    //     } else if(turn == 1){
-    //         turnFactor = 1;
-    //         turnButtonText.text = "Right Off Spin";
-    //         resetScene();
-    //     } else {
-    //         turnFactor = -1;
-    //         turnButtonText.text = "Left Off Spin";
-    //         resetScene();
-    //     }
-
-    //     Debug.Log("GSC turn factor : " + turnFactor);
-    // }
-
     public void onSpinSliderChange(float value){
         turnValue = value;
         resetScene();
@@ -120,7 +120,8 @@ public class GameSpeedController : MonoBehaviour
     }
 
     public void onSeamAngleSliderChange(float value){
-        ballStartRot.z = value;
+        ballStartRot.y = value;
+        seamAngle = value;
         resetScene();
     }
 
@@ -128,6 +129,21 @@ public class GameSpeedController : MonoBehaviour
         airSpeed = value;
         resetScene();
     }
+
+    public void onRoughnessSliderChange(float value){
+        if(value < 0){
+            roughness.x = -value;
+            roughness.y = 0;
+        } else if(value > 0){
+            roughness.x = 0;
+            roughness.y = value;
+        } else {
+            roughness.x = 0;
+            roughness.y = 0;
+        }
+        resetScene();
+    }
+
     /*
     * Resests the scene
     */
