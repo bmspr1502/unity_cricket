@@ -26,6 +26,8 @@ public class ballStart : MonoBehaviour
 
     public GameSpeedController GSC;
 
+    private List<Vector3> ballPositions;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +48,8 @@ public class ballStart : MonoBehaviour
 
         // Debug.Log("Ball thinks air speed is : " + GSC.airSpeed + "km/h" );
         windDirection = new Vector3(GSC.airSpeed / 5, 0, 0);
+
+        ballPositions = new List<Vector3>();
         
     }
 
@@ -101,5 +105,20 @@ public class ballStart : MonoBehaviour
 
         r.AddForce(new Vector3(differential * 0.002f, 0, 0));
 
+        ballPositions.Add(r.worldCenterOfMass);
+
+        Color red = Color.red;
+        LineRenderer lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.SetColors(red, red);
+        lineRenderer.SetWidth(0.02F, 0.02F);
+
+        //Change how mant points based on the mount of positions is the List
+        lineRenderer.SetVertexCount(ballPositions.Count);
+
+        for (int i = 0; i < ballPositions.Count; i++ )
+        {
+            //Change the postion of the lines
+            lineRenderer.SetPosition(i, ballPositions[i]);
+        }
     }
 }
