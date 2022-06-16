@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 public class ballStart : MonoBehaviour
@@ -27,6 +28,7 @@ public class ballStart : MonoBehaviour
     public GameSpeedController GSC;
 
     private List<Vector3> ballPositions;
+    public Text currentSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -47,10 +49,19 @@ public class ballStart : MonoBehaviour
         r.AddTorque(0 ,0, spinTorque * -GSC.turnValue);
 
         // Debug.Log("Ball thinks air speed is : " + GSC.airSpeed + "km/h" );
-        windDirection = new Vector3(GSC.airSpeed / 5, 0, 0);
+        windDirection = new Vector3(GSC.airSpeed / 5, +0.001f, -0.0001f);
 
         ballPositions = new List<Vector3>();
         
+    }
+
+    private int counter = 0;
+    void Update(){
+        counter++;
+        if(counter>=10)
+        currentSpeed.text = r.velocity.z * 7.409088f +" km/h";
+
+        counter%=10;
     }
 
     void FixedUpdate()
