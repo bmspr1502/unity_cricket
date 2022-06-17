@@ -59,7 +59,7 @@ public class ballStart : MonoBehaviour
     void Update(){
         counter++;
         if(counter>=10)
-        currentSpeed.text = r.velocity.z * 7.409088f +" km/h";
+        currentSpeed.text = (int)(r.velocity.z * 7.409088f) +" km/h";
 
         counter%=10;
     }
